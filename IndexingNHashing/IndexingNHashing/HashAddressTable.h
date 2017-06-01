@@ -14,7 +14,7 @@ public:
 	void resize() { // 블록중에 하나 꽉찰 때
 		int idx;
 		for (int i = 0; i < hat_size; i++) {
-			if (table[i]->v.size() == 128) {
+			if (table[i]->studentVector.size() == 128) {
 				idx = i;
 				break;
 			}
@@ -38,7 +38,7 @@ public:
 			count[idx + hat_size]--;
 			Block* newblock1 = new Block;
 			Block* newblock2 = new Block;
-			for (vector<Students>::iterator it = table[idx]->v.begin(); it != table[idx]->v.end(); it++) {
+			for (vector<Students>::iterator it = table[idx]->studentVector.begin(); it != table[idx]->studentVector.end(); it++) {
 				if ((int)pow(2, (prefix[idx])) & it->getID()) // 넘쳐서 분배
 					newblock2->insert(*it);
 				else
@@ -56,14 +56,14 @@ public:
 		}
 		else { //  ppt 위에 2개 꽉찰때 count 값이 0이 아니기 때문에 hat 사이즈는 늘어나지 않음.
 			for (int i = 0; i < hat_size; i++) {
-				if (table[i]->v.size() == 128) {
+				if (table[i]->studentVector.size() == 128) {
 					idx = i;
 					break;
 				}
 			}
 			Block* newblock1 = new Block;
 			Block* newblock2 = new Block;
-			for (vector<Students>::iterator it = table[idx]->v.begin(); it != table[idx]->v.end(); it++) {
+			for (vector<Students>::iterator it = table[idx]->studentVector.begin(); it != table[idx]->studentVector.end(); it++) {
 				if ((int)pow(2, (prefix[idx])) & it->getID())
 					newblock2->insert(*it);
 				else

@@ -25,15 +25,15 @@ int main() {
 	char temp[50];
 	char *token;
 	char *context;
-	int n;
-	fin >> n;
+	int studentNum;
+	fin >> studentNum;
 	fin.getline(temp, 50); // °³Çà
 
-	Block b;
-	HashAddressTable hat;
-	DynamicHash dh(b, hat);
+	Block block;
+	HashAddressTable hashTable;
+	DynamicHash hashBlocks(block, hashTable);
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < studentNum; i++) {
 		fin.getline(temp, 50);
 		token = strtok_s(temp, TOKEN, &context);
 		stu.setName(token);
@@ -50,11 +50,13 @@ int main() {
 
 		if (fout.write((char*)&stu, sizeof stu));
 		num++;
-		dh.insert(stu);
-
+		hashBlocks.insert(stu);
 	}
 
-	fout.close();
+	hashBlocks.print(); // print each record number of hash blocks
+
+	fout.open("Students_score.idx", ios_base::out | ios_base::binary);
+
 	stu.printInfo();
 	return 0;
 }

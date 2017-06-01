@@ -35,5 +35,11 @@
     <ClInclude Include="DynamicHash.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="InternalNode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LeafNode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

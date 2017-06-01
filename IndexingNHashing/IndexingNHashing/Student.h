@@ -17,6 +17,7 @@ public:
 	void setScore(float score);
 	void setAdvisorID(unsigned advid);
 	void printInfo();
+	char* outputInfo();
 
 	unsigned getID() {
 		return studentID;

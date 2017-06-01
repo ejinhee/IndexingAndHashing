@@ -4,14 +4,14 @@
 
 class Block {
 public:
-	vector<Students> v;
+	vector<Students> studentVector;
 
 	Block() {
-		v.reserve(128);
+		studentVector.reserve(128);
 	}
 	int insert(Students s) {
-		v.push_back(s);
-		if (v.size() == 128)
+		studentVector.push_back(s);
+		if (studentVector.size() == 128)
 			return 1;
 		return 0;
 	}

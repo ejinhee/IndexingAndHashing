@@ -153,6 +153,8 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="DynamicHash.h" />
     <ClInclude Include="HashAddressTable.h" />
+    <ClInclude Include="InternalNode.h" />
+    <ClInclude Include="LeafNode.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
