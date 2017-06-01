@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\dhehd\documents\visual studio 2015\projects\indexingnhashing\indexingnhashing\main.cpp(51): warning C4390: ';': 제어된 빈 문이 있습니다. 이 문이 필요합니까?
+  IndexingNHashing.vcxproj -> c:\users\dhehd\documents\visual studio 2015\Projects\IndexingNHashing\Debug\IndexingNHashing.exe
+  IndexingNHashing.vcxproj -> c:\users\dhehd\documents\visual studio 2015\Projects\IndexingNHashing\Debug\IndexingNHashing.pdb (Full PDB)
