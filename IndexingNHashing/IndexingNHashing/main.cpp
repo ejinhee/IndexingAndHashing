@@ -53,7 +53,8 @@ int main() {
 		hashBlocks.insert(stu);
 	}
 
-	hashBlocks.print(); // print each record number of hash blocks
+	hashBlocks.print();  //					 print each record number of hash blocks
+	hashBlocks.fprint(); //					 Students.Hash Ãâ·Â
 
 	fout.open("Students_score.idx", ios_base::out | ios_base::binary);
 

@@ -26,6 +26,7 @@ void Students::printInfo() {
 	cout << endl<<endl;
 	cout << name << (char*)&studentID << (char*)&score << (char*)&advisorID;
 }
+
 char* Students::outputInfo() {
 	char* Info = new char[InfoSIZE];
 
