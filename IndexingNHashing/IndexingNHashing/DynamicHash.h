@@ -27,22 +27,19 @@ public:
 	}
 
 	void print() {
-		cout << hat->hat_size << endl;
+		cout << "BlockSize" << hat->hat_size << endl;
 		for (int i = 0; i < hat->hat_size; i++)
 			cout << hat->table[i]->studentVector.size() << endl;
 	}
 
-	void fprint() {
+	void hash_print() {
 		fstream fout("Students.hash", ios_base::out | ios_base::binary);
 
 		for (int i = 0; i < hat->hat_size; i++) {				// 블락 단위 순회
-			if (fout.write((char*)&i, sizeof i));				// 블락 넘버 쓰기  ->> 이부분 reference 붙이면 주소가되고 안붙이면 에러남 수정필요
-			
 			for (int j = 0; j < hat->table[i]->studentVector.size(); j++) {		// 레코드 단위 순회
-				if (fout.write((char*)&hat->table[i]->studentVector[j], sizeof hat->table[i]));
+				fout.write((char*)&hat->table[i]->studentVector[j], sizeof hat->table[i]->studentVector[j]);
 			}
 
-			if (fout.write("\n\n", sizeof "\n\n" ));							// 블락 마다 개행문 추가
 		}
 	}
 };

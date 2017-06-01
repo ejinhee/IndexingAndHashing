@@ -1,21 +1,42 @@
 #pragma once
 #include "LeafNode.h"
-#include "vector"
+#include <vector>
+
+#define ScoreNum 504
+#define ChildNum 505
+
+using namespace std;
+
+class LeafNode;
+
 class InternalNode {
 public:
-	LeafNode* childLeafNode[4]; // LeafNode 바로 위 internalNode 용 포인터
-	InternalNode* childNode[4]; // otherwise
-	InternalNode* parentNode; // 올려줄때 필요할듯	
+	union ChildNode {
+		LeafNode* childLeafNode;					//ChildNode 는 또 다른 Internal 아니면 Leaf이다.
+		InternalNode* childInternalNode;
+	};
+
+	InternalNode* parentNode;						// 올려줄때 필요할듯	
 	vector<float> interNode_score_v;
-	bool isChildLeaf; // 이게 child가 leafNode일때랑 아닐때 때문에
+	vector<LeafNode*> interNode_child_v;
+	bool isChildLeaf;								// 이게 child가 leafNode일때랑 아닐때 때문에
 
 	InternalNode() {
-		interNode_score_v.reserve(3);
-		for (int i = 0; i < 4; i++) {
-			childLeafNode[i] = NULL;
-			childNode[i] = NULL;
-		}
+		interNode_score_v.reserve(ScoreNum);
+		interNode_child_v.reserve(ChildNum);
+
 		parentNode = NULL;
 		isChildLeaf = false;
 	}
+
+	void sort();
+	bool isFull();
 };
+
+void InternalNode::sort() {
+
+}
+
+bool InternalNode::isFull() {
+	return 0;
+}

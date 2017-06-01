@@ -2,10 +2,14 @@
 #include "Block.h"
 #include "HashAddressTable.h"
 #include "DynamicHash.h"
+#include "InternalNode.h"
+#include "LeafNode.h"
+#include "BpTree.h"
 
 #include <fstream>
 #include <string>
 #include <string.h>
+#include "main.h"
 
 #define TOKEN ","
 
@@ -33,6 +37,9 @@ int main() {
 	HashAddressTable hashTable;
 	DynamicHash hashBlocks(block, hashTable);
 
+	BpTree BplusTree;
+	LeafNodeElement* newRecord_Btree;
+
 	for (int i = 0; i < studentNum; i++) {
 		fin.getline(temp, 50);
 		token = strtok_s(temp, TOKEN, &context);
@@ -48,16 +55,41 @@ int main() {
 		advid = stoul(token, nullptr, 0);
 		stu.setAdvisorID(advid);
 
-		if (fout.write((char*)&stu, sizeof stu));
+		newRecord_Btree = new LeafNodeElement;
+		newRecord_Btree->blockNum = stu.getID() % 32;
+		newRecord_Btree->score = score;
+		BplusTree.insert(*newRecord_Btree);
+
+		fout.write((char*)&stu, sizeof stu);
 		num++;
 		hashBlocks.insert(stu);
 	}
 
-	hashBlocks.print();  //					 print each record number of hash blocks
-	hashBlocks.fprint(); //					 Students.Hash 출력
+	hashBlocks.hash_print();			//Students.Hash 출력
 
-	fout.open("Students_score.idx", ios_base::out | ios_base::binary);
+	ofstream fout2("Students_score.idx", ios_base::out | ios_base::binary);
+	BplusTree.printInternal();
+	
+	//while (BplusTree.getLeafNode()->nextLeafNode) {
+	//	BplusTree.getLeafNode()->printAll();
+	//	BplusTree.setLeafNode(BplusTree.getLeafNode()->nextLeafNode);
+	//}
+	//BplusTree.getLeafNode()->printAll();
+	
+	BplusTree.getRootNode()->interNode_child_v[0]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[1]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[2]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[3]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[4]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[5]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[6]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[7]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[8]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[9]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[10]->printAll();
+	BplusTree.getRootNode()->interNode_child_v[11]->printAll();
 
-	stu.printInfo();
+
+
 	return 0;
 }
